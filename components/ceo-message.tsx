@@ -21,21 +21,7 @@ export default function CEOMessage() {
   useEffect(() => {
     const fetchCEOData = async () => {
       try {
-        // Check if Supabase is properly configured
-        if (!hasValidConfig || !supabase) {
-          console.warn("Supabase not configured, using fallback data")
-          setCeoData({
-            id: "1",
-            name: "Howkins Ndemo",
-            position: "Chief Executive Officer & Founder",
-            email: "howkins@digishield.co.ke",
-            phone: "+254792281590",
-            linkedin: "https://linkedin.com/in/howkins-ndemo-digishield",
-            image_url: "/images/ceo.png",
-          })
-          setLoading(false)
-          return
-        }
+        if (!hasValidConfig || !supabase) throw new Error("Supabase not configured")
 
         // Try to fetch CEO data from team_members table
         const { data, error } = await supabase
@@ -45,16 +31,7 @@ export default function CEOMessage() {
           .single()
 
         if (error) {
-          console.warn("Could not fetch CEO data from database, using fallback:", error.message)
-          setCeoData({
-            id: "1",
-            name: "Howkins Ndemo",
-            position: "Chief Executive Officer & Founder",
-            email: "howkins@digishield.co.ke",
-            phone: "+254792281590",
-            linkedin: "https://linkedin.com/in/howkins-ndemo-digishield",
-            image_url: "/images/ceo.png",
-          })
+          throw new Error(error.message)
         } else {
           setCeoData({
             ...data,
@@ -62,16 +39,8 @@ export default function CEOMessage() {
           })
         }
       } catch (error) {
-        console.warn("Error fetching CEO data, using fallback:", error)
-        setCeoData({
-          id: "1",
-          name: "Howkins Ndemo",
-          position: "Chief Executive Officer & Founder",
-          email: "howkins@digishield.co.ke",
-          phone: "+254792281590",
-          linkedin: "https://linkedin.com/in/howkins-ndemo-digishield",
-          image_url: "/images/ceo.png",
-        })
+        console.error("Error fetching CEO data:", error)
+        setCeoData(null)
       } finally {
         setLoading(false)
       }

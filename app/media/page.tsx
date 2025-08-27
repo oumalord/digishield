@@ -1,92 +1,12 @@
+"use client"
+
 import Image from "next/image"
 import { Calendar, Eye, Camera } from "lucide-react"
 import { supabase, hasValidConfig } from "@/lib/supabase"
 import { useEffect, useState } from "react"
 
 export default function MediaPage() {
-  const [mediaItems, setMediaItems] = useState<Array<{ id: number; title: string; description?: string; image?: string; date?: string; category?: string; views?: number }>>([
-    {
-      id: 1,
-      title: "Cybersecurity Awareness Workshop - Nairobi",
-      description: "Community workshop on digital safety held at Kenyatta University",
-      image: "/placeholder.svg?height=400&width=600",
-      date: "2024-03-15",
-      category: "Workshop",
-      views: 245,
-    },
-    {
-      id: 2,
-      title: "Youth Digital Safety Campaign",
-      description: "Engaging young people in cybersecurity awareness activities",
-      image: "/placeholder.svg?height=400&width=600",
-      date: "2024-03-10",
-      category: "Campaign",
-      views: 189,
-    },
-    {
-      id: 3,
-      title: "Business Security Training Session",
-      description: "Training session for SMEs on protecting their digital assets",
-      image: "/placeholder.svg?height=400&width=600",
-      date: "2024-03-08",
-      category: "Training",
-      views: 156,
-    },
-    {
-      id: 4,
-      title: "School Outreach Program",
-      description: "Teaching students about online safety and digital citizenship",
-      image: "/placeholder.svg?height=400&width=600",
-      date: "2024-03-05",
-      category: "Outreach",
-      views: 298,
-    },
-    {
-      id: 5,
-      title: "Community Leaders Meeting",
-      description: "Engaging community leaders in cybersecurity advocacy",
-      image: "/placeholder.svg?height=400&width=600",
-      date: "2024-03-01",
-      category: "Meeting",
-      views: 134,
-    },
-    {
-      id: 6,
-      title: "Mobile Money Security Awareness",
-      description: "Educating users about mobile money fraud prevention",
-      image: "/placeholder.svg?height=400&width=600",
-      date: "2024-02-28",
-      category: "Awareness",
-      views: 267,
-    },
-    {
-      id: 7,
-      title: "Women in Cybersecurity Event",
-      description: "Empowering women through cybersecurity education and networking",
-      image: "/placeholder.svg?height=400&width=600",
-      date: "2024-02-25",
-      category: "Event",
-      views: 201,
-    },
-    {
-      id: 8,
-      title: "Rural Community Digital Literacy",
-      description: "Bringing cybersecurity awareness to rural communities",
-      image: "/placeholder.svg?height=400&width=600",
-      date: "2024-02-20",
-      category: "Outreach",
-      views: 178,
-    },
-    {
-      id: 9,
-      title: "Partnership Launch with Eveminet",
-      description: "Official launch of our strategic partnership",
-      image: "/placeholder.svg?height=400&width=600",
-      date: "2024-02-15",
-      category: "Partnership",
-      views: 312,
-    },
-  ])
+  const [mediaItems, setMediaItems] = useState<Array<{ id: number; title: string; description?: string; image?: string; date?: string; category?: string; views?: number }>>([])
 
   useEffect(() => {
     const load = async () => {
@@ -162,7 +82,7 @@ export default function MediaPage() {
             {mediaItems.map((item) => (
               <div key={item.id} className="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
                 <div className="aspect-video relative">
-                  <Image src={item.image || "/placeholder.svg"} alt={item.title} fill className="object-cover" />
+                  <Image src={item.image || "/images/media-fallback.png"} alt={item.title} fill className="object-cover" />
                   <div className="absolute top-4 left-4">
                     <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm">{item.category}</span>
                   </div>
