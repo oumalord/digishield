@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image"
 import { Calendar, Eye, Camera } from "lucide-react"
 import { supabase, hasValidConfig } from "@/lib/supabase"
