@@ -63,8 +63,7 @@ export default function ReportIncidentPage() {
       setSubmitted(true)
     } catch (error: any) {
       console.error("Error submitting incident:", error)
-      const message = error?.message || "Failed to submit incident. Please try again."
-      alert(message)
+      alert("Failed to submit incident. Please try again.")
     } finally {
       setIsSubmitting(false)
     }

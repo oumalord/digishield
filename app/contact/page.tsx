@@ -35,14 +35,8 @@ export default function ContactPage() {
       await createContactMessage(formData)
       alert("Thank you for your message! We will get back to you within 24 hours.")
     } catch (error: any) {
-      if (error.message.includes("Supabase not configured")) {
-        // Demo mode fallback
-        console.log("Demo mode: Contact message would be saved:", formData)
-        alert("Thank you for your message! We will get back to you within 24 hours.")
-      } else {
-        console.error("Error submitting contact message:", error)
-        alert("Thank you for your message! We will get back to you within 24 hours.")
-      }
+      console.error("Error submitting contact message:", error)
+      alert("Failed to submit. Please try again later.")
     }
 
     // Reset form

@@ -9,7 +9,7 @@ type CreateUserParams = {
 export async function createUser({ name, email, password }: CreateUserParams): Promise<{ user: any | null; error?: string }> {
   try {
     if (!hasValidConfig || !supabase) {
-      return { user: { id: "demo-user", name, email }, error: undefined }
+      return { user: null, error: "Supabase not configured" }
     }
 
     const { data: authData, error: signUpError } = await supabase.auth.signUp({
